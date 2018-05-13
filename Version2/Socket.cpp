@@ -56,8 +56,9 @@ void BaseSocket::close()
     while(true)
     {
         int state = ::close(socketId);
-        if (state == invalidSocketId)
+        if (state == 0)
         {
+            //close() returns 0 on success, -1 on error
             break;
         }
         switch(errno)
